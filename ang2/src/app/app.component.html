@@ -1,0 +1,52 @@
+<app-header></app-header>
+<main>
+    <ul id="users">
+        <!-- @for (user of users; track user.id) { -->
+            <li *ngFor="let user of users">
+                <!-- <app-user 
+                [id]="users[0].id" 
+                [name]="users[0].name"
+                [avatar]="users[0].avatar"
+                (select)="onSelectUser($event)"/> -->
+    
+                <app-user [selected]="selectedUserId==user.id" [user]="user" (select)="onSelectUser($event)"/>
+    
+            </li>
+        <!-- } -->
+        
+        <!-- <li>
+            <app-user 
+            [id]="users[1].id" 
+            [name]="users[1].name"
+            [avatar]="users[1].avatar"
+            (select)="onSelectUser($event)"/>
+
+            <app-user
+            [user]="users[1]"
+            (select)="onSelectUser($event)"/>
+
+        </li> -->
+        <!-- <li>
+            <app-user 
+            [id]="users[2].id" 
+            [name]="users[2].name"
+            [avatar]="users[2].avatar"
+            (select)="onSelectUser($event)"/>
+
+            <app-user
+            [user]="users[2]"
+            (select)="onSelectUser($event)"/>
+
+        </li> -->
+    </ul>
+
+    <!-- @if(selectedUser){ -->
+    <app-tasks *ngIf="selectedUserId" [userId]="selectedUserId" else fallback [userName]="selectedUser?.name ?? ''"></app-tasks>
+  
+    <!-- }@else{ -->
+        <p id="fallback">
+          Select user to see their details.  
+        </p>
+    <!-- } -->
+    <!-- <app-tasks [name]="selectedUser ? selectedUser.name:''"/> -->
+</main>
